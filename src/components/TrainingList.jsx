@@ -7,15 +7,21 @@ const TrainingList = () => {
   const [colDefs, setColDefs] = useState([
     { field: "date" }, //TODO: format date
     { field: "duration" },
-    { field: "activity" }
+    { field: "activity" },
+    {
+      headerName: "Customer",
+      valueGetter: (row) =>
+        row.data.customer.firstname + " " + row.data.customer.lastname,
+    },
   ]);
+
   const getData = () => {
     fetch(
-      "https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings"
+      "https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/gettrainings"
     )
       .then((resp) => resp.json())
       .then((data) => {
-        setRowData(data._embedded.trainings);
+        setRowData(data);
       });
   };
 
