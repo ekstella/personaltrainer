@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import CustomerList from './CustomerList';
+import TrainingList from './TrainingList';
 
 export default () => (
   <Tabs>
@@ -13,7 +14,7 @@ export default () => (
       <CustomerList/>
     </TabPanel>
     <TabPanel>
-      
+      <TrainingList/>
     </TabPanel>
   </Tabs>
 );
