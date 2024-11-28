@@ -1,3 +1,4 @@
+import AddCustomer from "./AddCustomer";
 import DataList from "./DataList";
 import { useEffect, useState } from "react";
 
@@ -23,9 +24,26 @@ const CustomerList = () => {
       });
   };
 
+  const saveCustomer = (customer) => {
+    fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(customer),
+    })
+      .then((res) => getData())
+      .catch((err) => console.error(err));
+  };
+
   useEffect(getData, []);
 
-  return <DataList rowData={rowData} colDefs={colDefs} />;
+  return (
+  <div>
+    <AddCustomer saveCustomer={saveCustomer}/>
+    <DataList rowData={rowData} colDefs={colDefs} /> 
+    </div>
+  );
 };
 
 export default CustomerList;
