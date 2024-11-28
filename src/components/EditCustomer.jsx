@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
+// component for editing existing customer in a dialog
 export default function EditCustomer(props) {
   const [open, setOpen] = React.useState(false);
   const [customer, setCustomer] = React.useState({
@@ -18,6 +19,7 @@ export default function EditCustomer(props) {
     phone: "",
   });
 
+  // populate form with previous values
   const handleClickOpen = () => {
     console.log(props);
     setCustomer({
@@ -36,11 +38,13 @@ export default function EditCustomer(props) {
     setOpen(false);
   };
 
+  // call the given function to update the customer data and close the form
   const updateCustomer = () => {
     props.updateCustomer(customer, props.data._links.customer.href);
     handleClose();
   };
 
+  // sync state with new changes
   const handleInputChange = (error) => {
     setCustomer({ ...customer, [error.target.name]: error.target.value });
   };
