@@ -5,13 +5,13 @@ const CustomerList = () => {
   const [rowData, setRowData] = useState([]);
 
   const [colDefs, setColDefs] = useState([
-    { field: "firstname" },
-    { field: "lastname" },
-    { field: "streetaddress" },
-    { field: "postcode" },
-    { field: "city" },
-    { field: "email" },
-    { field: "phone" },
+    { field: "firstname", filter: true },
+    { field: "lastname", filter: true},
+    { field: "streetaddress", filter: true },
+    { field: "postcode", filter: true },
+    { field: "city", filter: true },
+    { field: "email", filter: true },
+    { field: "phone", filter: true },
   ]);
   const getData = () => {
     fetch(

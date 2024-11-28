@@ -6,11 +6,12 @@ const TrainingList = () => {
   const [rowData, setRowData] = useState([]);
 
   const [colDefs, setColDefs] = useState([
-    { field: "date", valueFormatter: (date) => formatDate(date.data.date) }, //TODO: format date
-    { field: "duration" },
-    { field: "activity" },
+    { field: "date", filter: true, valueFormatter: (date) => formatDate(date.data.date) }, //TODO: format date
+    { field: "duration", filter: "agNumberColumnFilter" },
+    { field: "activity", filter: "agSetColumnFilter" },
     {
       headerName: "Customer",
+      filter: true,
       valueGetter: (row) =>
         row.data.customer.firstname + " " + row.data.customer.lastname,
     },
