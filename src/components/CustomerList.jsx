@@ -12,11 +12,13 @@ const CustomerList = () => {
   const [rowData, setRowData] = useState([]);
 
   const deleteCustomer = (customer) => {
-    fetch(customer, {
-      method: "DELETE",
-    }).then(() => {
-      getData();
-    });
+    if (confirm("Are you sure you want to delete this?")==true){
+      fetch(customer, {
+        method: "DELETE",
+      }).then(() => {
+        getData();
+      });
+    }
   };
 
   // define columns for table, explicitly add filters to all columns
