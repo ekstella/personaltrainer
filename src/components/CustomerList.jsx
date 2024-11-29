@@ -2,6 +2,7 @@ import AddCustomer from "./AddCustomer";
 import DataList from "./DataList";
 import { useEffect, useState } from "react";
 import EditCustomer from "./EditCustomer";
+import DeleteCustomer from "./DeleteCustomer";
 
 /*
   Component that displays customers, fetches data from the API, 
@@ -9,6 +10,14 @@ import EditCustomer from "./EditCustomer";
 */
 const CustomerList = () => {
   const [rowData, setRowData] = useState([]);
+
+  const deleteCustomer = (customer) => {
+    fetch(customer, {
+      method: "DELETE",
+    }).then(() => {
+      getData();
+    });
+  };
 
   // define columns for table, explicitly add filters to all columns
   const [colDefs, setColDefs] = useState([
@@ -25,6 +34,11 @@ const CustomerList = () => {
       cellRenderer: (props) => (
         <EditCustomer data={props.data} updateCustomer={updateCustomer} />
       ),
+    },
+    {
+      field: "delete",
+      cellRenderer: DeleteCustomer,
+      cellRendererParams: { deleteCustomer: deleteCustomer },
     },
   ]);
   // fetches data from the API
