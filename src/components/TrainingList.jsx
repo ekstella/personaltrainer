@@ -1,6 +1,7 @@
 import DataList from "./DataList";
 import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
+import DeleteTraining from "./DeleteTraining";
 
 /*
  Component that displays trainings, fetches data from the API,
@@ -9,6 +10,17 @@ import { format, parseISO } from "date-fns";
 
 const TrainingList = () => {
   const [rowData, setRowData] = useState([]);
+
+  const deleteTraining = (training) => {
+    if (confirm("Are you sure you want to delete this?")==true){
+      fetch(training, {
+        method: "DELETE",
+      }).then(() => {
+        getData();
+      });
+    }
+  };
+
   // define columns for table, explicitly add filters to all columns
   const [colDefs, setColDefs] = useState([
     {
@@ -25,6 +37,11 @@ const TrainingList = () => {
       // combine first and last name to a single column
       valueGetter: (row) =>
         row.data.customer.firstname + " " + row.data.customer.lastname,
+    },
+    {
+      field: "delete",
+      cellRenderer: DeleteTraining,
+      cellRendererParams: { deleteTraining: deleteTraining },
     },
   ]);
 
