@@ -31,6 +31,9 @@ const TrainingList = () => {
   // parse string to a date object and then convert back to string
   const formatDate = (dateString) => {
     console.log(dateString);
+    if (dateString == null) {
+      return ""
+    } 
     const date = parseISO(dateString);
     return format(date, "dd.MM.yyyy hh:mm");
   };
